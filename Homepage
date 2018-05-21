@@ -1,0 +1,392 @@
+<?php 
+       
+       session_start();
+?>
+
+<!DOCTYPE html>
+ <html>
+ <head>
+ <meta charset="utf-8">
+	<title>SChed</title>
+
+	 
+<script src="js/jquery.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="social/bootstrap-social.css">
+	<link rel="stylesheet" type="text/css" href="social/assets/css/font-awesome.css">
+
+	   <link rel="stylesheet" type="text/css" href="styles.css">
+ 	</head>
+ <body>
+	
+<header id="Home">
+
+ <div class="navbar navbar-fixed-top">
+		
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="home.php">SChed</a></li>
+			<li><a href="music.php">Mentoring</a></li>
+			
+			<li><a href="#about">Accounts</a></li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+
+      <?php
+
+
+
+        if(isset($_SESSION['message'])){
+
+        ?>
+
+        <!--insert welcome user here -->   
+
+          <li><a href="#"> <?php echo $_SESSION['message']; ?> </a></li> 
+        
+  
+              <li> <a href="logout.php" onclick="log()"> Logout</a></li>
+        
+        <script>
+        function log(){
+
+           alert("Logging out....")
+            
+
+        }
+        </script>
+      
+       
+        <li><a href="#"></a></li>    
+
+
+      <?php 
+        }else{
+
+        ?>
+
+        <li> <a data-toggle="modal" data-target="#accounts" style="color:white !important;" href="#">Accounts</a></li>
+    
+       
+        <li><a href="#"></a></li> 
+
+        <?php 
+
+        }
+
+        ?>
+		
+	
+		</ul>
+
+
+	</div>	
+
+			
+
+
+<div class="row" id="home">
+		<div class="jumbotron" id="home">
+		
+		<div class="container">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search subject . . ." name="search" id="s">
+                
+              <br>
+		  <center><a class="btn btn-primary btn-lg" href="music.php" role="button">SEARCH</a></center>
+		</div>		
+	</div>
+	</div>
+
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="accounts" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><b>Welcome to SChed</b></h4>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+    <div class="row">
+    <div class="col-md-6">
+            <div class="panel with-nav-tabs panel-success">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active col-md-6" ><a href="#tab1success" data-toggle="tab">Login</a></li>
+                            <li class="col-md-6"><a href="#tab2success" data-toggle="tab" >SignUp</a></li>
+                            
+                        </ul>
+                </div>
+
+
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1success">
+                          
+
+                              <div class="row">
+                        <div class="col-xs-12">
+                            <div class="well">
+                        
+                          <form id="loginForm" method="POST" action="login.php" data-toggle="validator"> 
+                              <div class="form-group">
+                                  <label for="email" class="control-label">Email</label>
+                                  <input type="email" class="form-control" name="email" value="" required title="Enter your email" placeholder="Enter your email">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password" class="control-label">Password</label>
+                                  <input type="password" class="form-control" name="password" value="" required title="Enter your password">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember login
+                                  </label>
+                                  
+                              </div>
+                              <button type="submit" class="btn btn-success btn-block" >Login</button>
+                             
+                       </form>
+                       </div>
+                      </div>
+                  </div>  
+
+
+                        </div>
+                        <div class="tab-pane fade" id="tab2success">
+                          
+                            <div class="row myborder">
+             <div class="col-xs-12">
+             <h4 style="color: #7EB59E; margin: initial; margin-bottom: 10px;">Sign Up Now</h4><hr>
+           
+                          <form id="loginForm" method="POST" action="signup.php" data-toggle="validator" >
+                          
+                   <div class="form-group">
+                      <div class="input-group margin-bottom-20" style="margin-bottom: 15px;">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
+                      <input type="email" class="form-control" placeholder="Email" name="email" required> 
+                  </div>
+           
+                <div class="form-group">
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock mycolor"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" name="password" required> 
+                    </div>
+                </div>
+
+              <div class="form-group">
+                  <div class="input-group margin-bottom-20">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user mycolor"></i></span>
+                      <input type="text" class="form-control" placeholder="Name" name="name" required> 
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone mycolor"></i></span>
+                    <input type="tel" class="form-control" placeholder="Phone Number" name="number" required>                      
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
+                    <input type="text" required class="form-control" placeholder="Address" name="add" >                       
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
+                   <input type="text" required class="form-control" placeholder="City" name="city" >  
+                </div>
+            </div>
+
+            <div class="form-group">
+                  <div class="input-group margin-bottom-20">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
+                      <input type="text" class="form-control" placeholder="Zipcode" name="zipcode" required> 
+                    </div>
+            </div>
+
+                <input type="hidden" value="User" name="type">
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                      <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                </div>
+            </div>
+        </div>
+        </form>
+
+        </ul>
+        <div class="col-md-2"></div>
+    </div>
+
+
+
+
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+	
+</header>
+		
+
+
+
+
+	<div class="container" id="fruits">
+
+
+
+	<div class="row" id="intro">
+		<!-- row2 -->
+			<!--<h1 > <center>GET SOME
+      <br><marquee> EXCLUSIVE UPDATES </marquee> <br>
+      </h1>
+
+		<p class="container" style="font-size: 17px;"> .</p>
+
+		</div>
+		
+	<!-- row3 -->
+	<br>
+			
+				
+				<div class="row">
+
+					<?php
+			         /*require_once('dbconn.php');
+			           try {
+			           $stmt = $conn->prepare("SELECT * FROM display;");
+			           $stmt->execute();
+			           
+			           foreach ($stmt->fetchAll() as $row) {
+					
+
+						echo "<div class='col-md-3 col-xs-6'>";
+
+					
+						echo "<div class='thumbnail'>";
+          
+
+		                echo "<img src= images/" .$row['img']." height='225px' width='224px'>";
+		                echo "<h4 class = 'text-center';> <b> ".$row['name']." </b> </h4> <br>";	
+						echo "<p class = 'text-justify';>".$row['desc']." </p>";  
+						
+
+		        echo "<p><a class='btn btn-primary btn-block' href='music.php' role = 'button' >Buy Now</a></p>";
+
+     
+            echo "</div>";
+					   echo "</div>";
+           
+					     
+            }
+            }
+            catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            }
+            $conn = null;
+        
+            */?>	<!--php-->
+
+					</div>
+			</div>
+			
+
+		 <!-- row 5 -->
+
+<footer class="row">
+		 <p class="container" style="font-size: 18px;"></p>
+</footer>
+	</div> <!--container-->
+
+
+	 <!-- row 4 -->
+		<div class="row" id="about">
+			
+
+		<!--<div class="jumbotron" id="about">
+
+		<div class="container">
+		<h1><marquee>Muse Sick</marquee></h1> <br>
+
+		<h3 class="container">  
+			Muse Sick is a subsidy of the music.amazon.com <br>
+			Listen to your favourite songs online from your web browser. Stream music now using our webplayer. <br>
+      Amazon Music Unlimited webplayer gives you the ability to stream music from any computer anywhere.<br>
+			<br>
+			<br>
+			At Muse Sick customers can qualify for FREE SHIPPING <BR>
+			for orders $500 and up REGION-WIDE. All orders below this <BR>
+			amount have a delivery charge for only $20.</h3>
+
+		
+		 
+		</div>		-->
+	</div>
+
+  
+
+				
+
+
+		</div>  <!-- row 4 -->
+
+
+
+
+  <div class="nav nav-bar navbar-default" id="foot">
+    
+    <ul class="nav navbar-nav">
+      
+      <div class="container">
+      
+      <h4 class="text-center" style="color: white;"><center> SChed <br> <br>All Rights Reserved 2018 <br>Developed by: Wakanda </center></h4>
+
+
+        
+    </ul>   
+
+      </div> <!--container-->
+    
+    
+
+  </div> <!--nav footer-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/boostrap.min.js"></script>
+			
+ </body>
+ </html>
